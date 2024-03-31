@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('../..//assets/imagenes/backGroundLogin.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #007bff;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 60px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #f2f2f2;
+}
+.quantity-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input[type="number"] {
+    width: 50px;
+    text-align: center;
+}
+.quantity-control {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+.update-button {
+    text-align: center;
+    margin-top: 20px;
+}
+.update-message {
+    color: green;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+}

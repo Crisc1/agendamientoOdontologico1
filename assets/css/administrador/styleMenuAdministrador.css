@@ -1,0 +1,27 @@
+body {
+background: url('../../imagenes/backGroundLogin.jpg') no-repeat center center fixed;
+background-size: cover;
+}
+
+.navbar {
+    background-color: #007bff; /* Color de fondo azul principal para la barra de navegación */
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: #ffffff; /* Color del ícono del botón de navegación */
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.jumbotron {
+    background-color: #ffffff; /* Color de fondo blanco para el área principal */
+    border: 1px solid #007bff; /* Borde azul alrededor del área principal */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px;
+}
+
+.servicios-citas {
+    margin-top: 20px;
+}
