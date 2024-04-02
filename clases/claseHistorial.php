@@ -1,20 +1,20 @@
 <?php
 class claseHistorial{
-    private $Documento_paciente;
-    private $Fecha_odontograma;
+    private $documentoPaciente;
+    private $fechaOdontograma;
     private $comentario;
 
     
     public function __construct(){
-        $this->Documento_paciente="";
-        $this->Fecha_odontograma="";
+        $this->documentoPaciente="";
+        $this->fechaOdontograma="";
         $this->comentario="";
 
     }
     
-    public function odontograma($Documento_paciente, $Fecha_odontograma, $comentario) {
-        $this->Documento_paciente= $Documento_paciente;
-        $this->Fecha_odontograma= $Fecha_odontograma;
+    public function odontograma($documentoPaciente, $fechaOdontograma, $comentario) {
+        $this->documentoPaciente= $documentoPaciente;
+        $this->fechaOdontograma= $fechaOdontograma;
         $this->comentario= $comentario;
     }
 

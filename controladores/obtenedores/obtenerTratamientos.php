@@ -1,5 +1,5 @@
 <?php
-include_once "../ConexionDB.php";
+include_once "../conexionDB.php";
 
 // Crear una instancia de la clase ConexionDB
 $conexionDB = new ConexionDB();
@@ -10,7 +10,7 @@ if ($conexionDB->abrir()) {
         $idEspecialidad = $_GET['idEspecialidad'];
 
         // Realizar la consulta a la base de datos para obtener tratamientos según la especialidad seleccionada
-        $consulta = "SELECT ID_TRATAMIENTO, NOMBRE_TRATAMIENTO FROM TRATAMIENTO WHERE ID_ESPECIALIDAD = $idEspecialidad";
+        $consulta = "SELECT ID_TRATAMIENTO, NOMBRE_TRATAMIENTO FROM tratamiento WHERE ID_ESPECIALIDAD = $idEspecialidad";
         $conexionDB->consultar($consulta);
 
         // Obtener el resultado de la consulta

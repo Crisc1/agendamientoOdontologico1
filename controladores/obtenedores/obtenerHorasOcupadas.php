@@ -1,5 +1,5 @@
 <?php
-include_once "../ConexionDB.php";
+include_once "../conexionDB.php";
 
 $conexionDB = new ConexionDB();
 
@@ -12,7 +12,7 @@ if ($conexionDB->abrir()) {
         $horasOcupadas = array();
 
         // Obtener las horas ocupadas para la fecha y el profesional
-        $consultaHorasOcupadas = "SELECT HORA FROM CITA WHERE FECHA = '$fecha' AND ID_PROFESIONAL = $idProfesional";
+        $consultaHorasOcupadas = "SELECT HORA FROM cita WHERE FECHA = '$fecha' AND ID_PROFESIONAL = $idProfesional";
         $conexionDB->consultar($consultaHorasOcupadas);
 
         $resultadoHorasOcupadas = $conexionDB->obtenerResult();

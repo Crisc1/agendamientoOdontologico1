@@ -1,21 +1,19 @@
 <?php
 include '../controladores/ConexionDB.php';
 
-class modeloHistorial
-{
-    public function regOdontogramaAdulto($documento_paciente, $Fecha_odontograma, $comentarios)
-    {
+class modeloHistorial{
+    public function regOdontogramaAdulto($documentoPaciente, $fechaOdontograma, $comentarios){
         try {
             $conexion = new conexionDB();
             $conexion->abrir();
 
             // Puedes imprimir los valores recibidos aquí
-            echo "Documento Paciente: $documento_paciente<br>";
-            echo "Fecha Odontograma: $Fecha_odontograma<br>";
-            echo "Comentario: $comentarios<br>";
+//            echo "Documento Paciente: $documentoPaciente<br>";
+//            echo "Fecha Odontograma: $fechaOdontograma<br>";
+//            echo "Comentario: $comentarios<br>";
 
             // Ahora, puedes utilizar estos valores en tu consulta SQL
-            $sql = "INSERT INTO ODONTOGRAMA (Documento_paciente, Fecha_odontograma, Comentario) VALUES ('$documento_paciente', '$Fecha_odontograma', '$comentario')";
+            $sql = "INSERT INTO ODONTOGRAMA (Documento_paciente, Fecha_odontograma, Comentarios) VALUES ('$documentoPaciente', '$fechaOdontograma', '$comentarios')";
             $conexion->consultar($sql);
 
             $result = $conexion->obtenerResult();

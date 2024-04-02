@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/agendamientoOdontologico/vista/administrador/personasRegistradas.php</file>
-            <file>file:/D:/xampp/htdocs/agendamientoOdontologico/vista/administrador/editarDatosPersona.php</file>
-            <file>file:/D:/xampp/htdocs/agendamientoOdontologico/modelo/administrador/modeloConsultarDatosPersona.php</file>
-            <file>file:/D:/xampp/htdocs/agendamientoOdontologico/controladores/administrador/controlEditarDatosPersona.php</file>
+            <file>file:/D:/xampp/htdocs/agendamientoOdontologico/vista/odontologo/menuOdontograma.php</file>
+            <file>file:/D:/xampp/htdocs/agendamientoOdontologico/assets/js/odontologo/menuOdontograma.js</file>
+            <file>file:/D:/xampp/htdocs/agendamientoOdontologico/assets/css/odontologo/styleMenuOdontologo.css</file>
         </group>
     </open-files>
 </project-private>

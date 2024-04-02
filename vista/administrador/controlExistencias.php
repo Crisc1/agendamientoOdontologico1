@@ -1,4 +1,6 @@
 <?php
+session_start(); // Iniciar la sesión
+
 include_once '../../modelo/administrador/modeloConsultarExistencias.php';
 
 // Función para consultar los insumos desde la base de datos
@@ -22,7 +24,11 @@ function consultarYActualizarInsumos() {
                     $diferencia = $cantidad_ingresada - $cantidad_actual;
                     
                     // Actualiza la cantidad en la base de datos sumando la diferencia
-                    actualizarInsumos([$id => $diferencia]); // Utiliza el nombre correcto de la función aquí
+                    if (actualizarInsumos([$id => $diferencia])) {
+                        $_SESSION['cambios_exitosos'] = true; // Cambios exitosos
+                    } else {
+                        $_SESSION['cambios_exitosos'] = false; // Error al realizar cambios
+                    }
                 }
             }
         }
@@ -54,6 +60,16 @@ $resultados = consultarYActualizarInsumos();
             padding: 0;
             position: relative;
         }
+        
+        .navbar {
+            background-color: #007bff;
+            display: flex; /* Add display property only to the navbar */
+        }
+
+        .navbar-dark .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+        
         .container {
             max-width: 800px;
             margin: 50px auto;
@@ -129,9 +145,29 @@ $resultados = consultarYActualizarInsumos();
             font-size: 1.2em;
             text-align: center;
         }
+        
+        .btn-volver {
+            background-color: #e63946; /* Cambio de color a un tono de rojo más fuerte */
+            color: #fff;
+            border-color: #e63946; /* Cambio de color del borde */
+            border-radius: 10px;
+            padding: 8px 16px;
+            margin-left: 10px;
+        }
+
+        .btn-volver:hover {
+            background-color: #cf303e; /* Cambio de color al pasar el ratón */
+            border-color: #cf303e; /* Cambio de color del borde al pasar el ratón */
+        }
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="../administrador/menuAdministrador.php">Centro Odontológico</a>
+        <div class="navbar-collapse justify-content-end">
+            <button class="btn rounded mr-2 btn-volver" type="button" onclick="window.history.back()">Volver</button>
+        </div>
+    </nav>
     <div class="container">
         <h1 class="text-center mt-5 mb-4">Control de Insumos</h1>
         <form action="" method="post">
@@ -155,12 +191,12 @@ $resultados = consultarYActualizarInsumos();
                             <td class="quantity-control">
                                 <div class="input-group">
                                     <button class="btn btn-outline-primary" type="button"
-                                        onclick="decrementarCantidad(<?php echo $insumo['ID']; ?>)">-</button>
+                                        onclick="incrementarCantidad(<?php echo $insumo['ID']; ?>)">+</button>
                                     <input id="cantidad_<?php echo $insumo['ID']; ?>" type="number"
                                         class="form-control text-center" name="cantidad[<?php echo $insumo['ID']; ?>]"
                                         value="<?php echo $insumo['Cantidad']; ?>" min="0">
                                     <button class="btn btn-outline-primary" type="button"
-                                        onclick="incrementarCantidad(<?php echo $insumo['ID']; ?>)">+</button>
+                                            onclick="decrementarCantidad(<?php echo $insumo['ID']; ?>)">-</button>                                       
                                 </div>
                             </td>
                             <td><?php echo $insumo['Unidad']; ?></td>
@@ -192,6 +228,18 @@ $resultados = consultarYActualizarInsumos();
             var input = document.getElementById('cantidad_' + id);
             input.stepDown();
         }
+
+        // Mostrar mensaje de éxito o error después de actualizar
+        <?php if (isset($_SESSION['cambios_exitosos'])): ?>
+            <?php if ($_SESSION['cambios_exitosos']): ?>
+                alert("Los cambios se realizaron con éxito.");
+            <?php else: ?>
+                alert("Hubo un error al realizar los cambios.");
+            <?php endif; ?>
+            <?php unset($_SESSION['cambios_exitosos']); ?> // Limpiar la variable de sesión después de mostrar el mensaje
+            // Redireccionar a otra página al hacer clic en "Aceptar" en el mensaje
+            window.location.href = "menuAdministrador.php"; // Cambia "nueva_pagina.php" por la URL de la página a la que deseas redirigir
+        <?php endif; ?>
     </script>
 </body>
 </html>

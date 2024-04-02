@@ -1,6 +1,6 @@
 <?php
 // Incluye la clase de conexión a la base de datos
-require_once('../../controladores/ConexionDB.php');
+require_once('../../controladores/conexionDB.php');
 
 // Función para consultar los insumos en la base de datos
 function consultarInsumos() {

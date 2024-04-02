@@ -107,16 +107,16 @@ th {
     background-color: #218838; /* Color verde en hover y focus */
 }
 
-        .btn-volver {
-            background-color: #e63946; /* Cambio de color a un tono de rojo más fuerte */
-            color: #fff;
-            border-color: #e63946; /* Cambio de color del borde */
-            border-radius: 10px;
-            padding: 8px 16px;
-            margin-left: 10px;
-        }
+.btn-volver {
+    background-color: #e63946; /* Cambio de color a un tono de rojo más fuerte */
+    color: #fff;
+    border-color: #e63946; /* Cambio de color del borde */
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin-left: 10px;
+}
 
-        .btn-volver:hover {
-            background-color: #cf303e; /* Cambio de color al pasar el ratón */
-            border-color: #cf303e; /* Cambio de color del borde al pasar el ratón */
-        }
+.btn-volver:hover {
+    background-color: #cf303e; /* Cambio de color al pasar el ratón */
+    border-color: #cf303e; /* Cambio de color del borde al pasar el ratón */
+}

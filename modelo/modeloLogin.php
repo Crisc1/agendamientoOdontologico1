@@ -9,7 +9,7 @@ $conexion->abrir();
 $documento = $_POST['documento'];
 $contrasena = $_POST['contrasena'];
 
-$query = "SELECT ID_ROL, DOCUMENTO, NOMBRE, APELLIDO FROM PERSONA WHERE DOCUMENTO = '$documento' AND CONTRASENA = '$contrasena'";
+$query = "SELECT ID_ROL, DOCUMENTO, NOMBRE, APELLIDO FROM persona WHERE DOCUMENTO = '$documento' AND CONTRASENA = '$contrasena'";
 $conexion->consultar($query);
 $resultado = $conexion->obtenerResult();
 
@@ -21,7 +21,7 @@ $resultado = $conexion->obtenerResult();
         $_SESSION['APELLIDO'] = $row['APELLIDO'];
     
     if ($_SESSION['ID_ROL'] === '3') {
-        $query = "SELECT ID_PROFESIONAL FROM PROFESIONAL WHERE DOCUMENTO = '$documento'";
+        $query = "SELECT ID_PROFESIONAL FROM profesional WHERE DOCUMENTO = '$documento'";
         $conexion->consultar($query);
         $resultado = $conexion->obtenerResult();
 
@@ -36,18 +36,16 @@ $resultado = $conexion->obtenerResult();
     }
 
     //Redirigir según el rol
-    if ($_SESSION['ID_ROL'] === '1') {
+    if ($_SESSION['ID_ROL'] === '0') {
+        header("Location: ../vista/usuario/menuUsuario.php");
+    } elseif ($_SESSION['ID_ROL'] === '1') {
         header("Location: ../vista/administrador/menuAdministrador.php");
     } elseif ($_SESSION['ID_ROL'] === '2') {
-        echo'Rol 2';
-        //header("Location: ../vista/menus/menuRecepcion.php");
+        header("Location: ../vista/recepcion/menuRecepcion.php");
     } elseif ($_SESSION['ID_ROL'] === '3') {
-        header("Location: ../vista/menus/menuOdontologo.php");
+        header("Location: ../vista/odontologo/menuOdontologo.php");
     } elseif ($_SESSION['ID_ROL'] === '4') {
-        echo'Rol 4';
         header("Location: ../vista/paciente/menuPaciente.php");
-    } else {
-        header("Location: interfaz_invitado.php");
     }
 } else {
     echo "Usuario o contraseña incorrectos";

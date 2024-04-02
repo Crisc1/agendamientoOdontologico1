@@ -29,13 +29,15 @@ if (isset($_SESSION['DOCUMENTO'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bienvenido</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/styleMenu.css">
+    <link rel="stylesheet" href="../../../assets/css/odontologo/styleMenuOdontologo.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">Centro Odontológico</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        </button>
+        <a class="navbar-brand" href="../administrador/menuAdministrador.php">Centro Odontológico</a>
+        <div class="navbar-collapse justify-content-end">
+            <button class="btn rounded mr-2 btn-volver" type="button" onclick="window.history.back()">Volver</button>
+        </div>
+    </nav>
     </nav>
 
     <div class="container">
@@ -46,7 +48,7 @@ if (isset($_SESSION['DOCUMENTO'])) {
                 <div class="col-md-6">
                     <h2>Odontograma Adulto</h2>
                     <p>Aqui podrás generar el odontograma de un adulto.</p>
-                    <button onclick="confirmAsistencia('<?php echo $documento_paciente; ?>')" class="btn btn-primary">Asistencia</button>
+                    <button onclick="odontogramaAdulto('<?php echo $documento_paciente; ?>')" class="btn btn-primary">Generar</button>
                 </div>
                 <div class="col-md-6">
                     <h2>Odontograma Niño</h2>
@@ -56,6 +58,7 @@ if (isset($_SESSION['DOCUMENTO'])) {
             </div>
         </div>
     </div>
+    <script src="../../../assets/js/odontologo/menuOdontograma.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

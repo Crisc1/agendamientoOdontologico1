@@ -1,5 +1,5 @@
 <?php
-include_once "../ConexionDB.php";
+include_once "../conexionDB.php";
 
 // Crear una instancia de la clase ConexionDB
 $conexionDB = new ConexionDB();
@@ -7,7 +7,7 @@ $conexionDB = new ConexionDB();
 // Abrir la conexión a la base de datos
 if ($conexionDB->abrir()) {
     // Realizar la consulta a la base de datos
-    $consulta = "SELECT ID_ESPECIALIDAD, NOMBRE_ESPECIALIDAD FROM ESPECIALIDAD";
+    $consulta = "SELECT ID_ESPECIALIDAD, NOMBRE_ESPECIALIDAD FROM especialidad";
     $conexionDB->consultar($consulta);
 
     // Obtener el resultado de la consulta

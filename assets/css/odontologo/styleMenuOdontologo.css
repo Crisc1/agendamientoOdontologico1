@@ -1,0 +1,44 @@
+body {
+    background: url('../..//imagenes/backGroundLogin.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.navbar {
+    background-color: #007bff;
+    display: flex; /* Add display property only to the navbar */
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: #ffffff;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.jumbotron {
+    left: 20px;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid #007bff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.servicios-citas {
+    margin-top: 20px;
+}
+
+.btn-volver {
+    background-color: #e63946; /* Cambio de color a un tono de rojo más fuerte */
+    color: #fff;
+    border-color: #e63946; /* Cambio de color del borde */
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin-left: 10px;
+}
+
+.btn-volver:hover {
+    background-color: #cf303e; /* Cambio de color al pasar el ratón */
+    border-color: #cf303e; /* Cambio de color del borde al pasar el ratón */
+}

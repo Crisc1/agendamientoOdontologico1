@@ -1,5 +1,5 @@
 <?php
-include '../controladores/ConexionDB.php';
+include '../controladores/conexionDB.php';
 class modeloCitas{
         public function regCita(claseCitas $regCita) {
         try {
@@ -33,21 +33,21 @@ class modeloCitas{
             $conexion = new ConexionDB();
             $conexion->abrir();      
             $sql= "SELECT 
-                    CITA.ID_CITA, 
-                    CITA.FECHA, 
-                    CITA.HORA, 
-                    PROFESIONAL.ID_PROFESIONAL,  
-                    CONCAT(PERSONA.NOMBRE, ' ', PERSONA.APELLIDO) AS NOMBRE_PROFESIONAL,
-                    TRATAMIENTO.NOMBRE_TRATAMIENTO AS NOMBRE_TRATAMIENTO, 
-                    CONSULTORIO.NUMERO_CONSULTORIO
-                FROM CITA
-                JOIN PROFESIONAL ON CITA.ID_PROFESIONAL = PROFESIONAL.ID_PROFESIONAL
-                JOIN PERSONA ON PROFESIONAL.DOCUMENTO = PERSONA.DOCUMENTO
-                LEFT JOIN TRATAMIENTO ON CITA.ID_TRATAMIENTO = TRATAMIENTO.ID_TRATAMIENTO
-                LEFT JOIN CONSULTORIO ON CITA.ID_CONSULTORIO = CONSULTORIO.ID_CONSULTORIO
-                WHERE CITA.DOCUMENTO_PACIENTE = $documento
-                    AND CITA.FECHA >= CURDATE() -- Solo fechas mayores o iguales a la actual
-                ORDER BY CITA.FECHA";
+                    cita.ID_CITA, 
+                    cita.FECHA, 
+                    cita.HORA, 
+                    profesional.ID_PROFESIONAL,  
+                    CONCAT(persona.NOMBRE, ' ', persona.APELLIDO) AS NOMBRE_profesional,
+                    tratamiento.NOMBRE_TRATAMIENTO AS NOMBRE_TRATAMIENTO, 
+                    consultorio.NUMERO_CONSULTORIO
+                FROM cita
+                JOIN profesional ON cita.ID_PROFESIONAL = profesional.ID_PROFESIONAL
+                JOIN persona ON profesional.DOCUMENTO = persona.DOCUMENTO
+                LEFT JOIN tratamiento ON cita.ID_TRATAMIENTO = tratamiento.ID_TRATAMIENTO
+                LEFT JOIN consultorio ON cita.ID_CONSULTORIO = consultorio.ID_CONSULTORIO
+                WHERE cita.DOCUMENTO_PACIENTE = $documento
+                    AND cita.FECHA >= CURDATE() -- Solo fechas mayores o iguales a la actual
+                ORDER BY cita.FECHA";
             $conexion->consultar($sql);
             $result = $conexion->obtenerResult();
             $conexion->cerrar();
@@ -63,22 +63,22 @@ class modeloCitas{
             $conexion = new conexionDB();
             $conexion->abrir();      
             $sql= "SELECT 
-                        CITA.ID_CITA, 
-                        CITA.FECHA, 
-                        CITA.HORA, 
+                        cita.ID_CITA, 
+                        cita.FECHA, 
+                        cita.HORA, 
                         PACIENTE.DOCUMENTO AS DOCUMENTO_PACIENTE,
-                        PROFESIONAL.ID_PROFESIONAL,  
+                        profesional.ID_PROFESIONAL,  
                         CONCAT(PACIENTE.NOMBRE, ' ', PACIENTE.APELLIDO) AS NOMBRE_PACIENTE,
-                        TRATAMIENTO.NOMBRE_TRATAMIENTO AS NOMBRE_TRATAMIENTO, 
-                        CONSULTORIO.NUMERO_CONSULTORIO
-                        FROM CITA
-                        JOIN PROFESIONAL ON CITA.ID_PROFESIONAL = PROFESIONAL.ID_PROFESIONAL
-                        JOIN PERSONA AS PACIENTE ON CITA.DOCUMENTO_PACIENTE = PACIENTE.DOCUMENTO
-                        LEFT JOIN TRATAMIENTO ON CITA.ID_TRATAMIENTO = TRATAMIENTO.ID_TRATAMIENTO
-                        LEFT JOIN CONSULTORIO ON CITA.ID_CONSULTORIO = CONSULTORIO.ID_CONSULTORIO
-                        WHERE CITA.ID_PROFESIONAL = $idProfesional
-                        AND CITA.FECHA >= CURDATE() -- Solo fechas mayores o iguales a la actual
-                        ORDER BY CITA.FECHA;";
+                        tratamiento.NOMBRE_TRATAMIENTO AS NOMBRE_TRATAMIENTO, 
+                        consultorio.NUMERO_CONSULTORIO
+                        FROM cita
+                        JOIN profesional ON cita.ID_PROFESIONAL = profesional.ID_PROFESIONAL
+                        JOIN persona AS PACIENTE ON cita.DOCUMENTO_PACIENTE = PACIENTE.DOCUMENTO
+                        LEFT JOIN tratamiento ON cita.ID_TRATAMIENTO = tratamiento.ID_TRATAMIENTO
+                        LEFT JOIN consultorio ON cita.ID_CONSULTORIO = consultorio.ID_CONSULTORIO
+                        WHERE cita.ID_PROFESIONAL = $idProfesional
+                        AND cita.FECHA >= CURDATE() -- Solo fechas mayores o iguales a la actual
+                        ORDER BY cita.FECHA;";
             $conexion->consultar($sql);
             $result = $conexion->obtenerResult();
             $conexion->cerrar();
@@ -92,7 +92,7 @@ class modeloCitas{
         try{
             $conexion = new ConexionDB();
             $conexion->abrir();      
-            $sql= "DELETE FROM CITA WHERE ID_CITA = $idCita";
+            $sql= "DELETE FROM cita WHERE ID_CITA = $idCita";
             $conexion->consultar($sql);
             $result = $conexion->obtenerResult();
             $conexion->cerrar();

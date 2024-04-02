@@ -1,5 +1,5 @@
 <?php
-include_once "../ConexionDB.php";
+include_once "../conexionDB.php";
 
 $conexionDB = new ConexionDB();
 
@@ -9,9 +9,9 @@ if ($conexionDB->abrir()) {
 
         // Realizar la consulta a la base de datos para obtener profesionales según la especialidad seleccionada
         $consulta = "SELECT P.DOCUMENTO, P.NOMBRE, P.APELLIDO, PR.ID_PROFESIONAL
-                    FROM PERSONA P
-                    INNER JOIN PROFESIONAL PR ON P.DOCUMENTO = PR.DOCUMENTO
-                    INNER JOIN PROFESIONAL_ESPECIALIDAD PE ON PR.ID_PROFESIONAL = PE.ID_PROFESIONAL
+                    FROM persona P
+                    INNER JOIN profesional PR ON P.DOCUMENTO = PR.DOCUMENTO
+                    INNER JOIN profesional_especialidad PE ON PR.ID_PROFESIONAL = PE.ID_PROFESIONAL
                     WHERE PE.ID_ESPECIALIDAD = $idEspecialidad";
         $conexionDB->consultar($consulta);
 

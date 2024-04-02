@@ -10,7 +10,7 @@ if (isset($_SESSION['DOCUMENTO'])) {
     $idProfesional = $_SESSION['ID_PROFESIONAL'];
 
     // Obtener el documento del paciente desde el query parameter
-    $documento_paciente = isset($_GET['documento_paciente']) ? $_GET['documento_paciente'] : '';
+    $documentoPaciente = isset($_GET['documento_paciente']) ? $_GET['documento_paciente'] : '';
 
 } else {
     // Si no hay sesión activa, redirigir a la página de inicio de sesión

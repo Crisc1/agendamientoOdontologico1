@@ -1,4 +1,5 @@
 <?php
+// Incluir las clases y archivos necesarios
 include '../clases/claseHistorial.php';
 include '../modelo/modeloHistorial.php';
 
@@ -8,45 +9,53 @@ $json_data = file_get_contents("php://input");
 // Decodificar el JSON en un array asociativo
 $data = json_decode($json_data, true);
 
-if (isset($data['odontograma'])) {
-    try {
-        $odontograma = $data['odontograma'];
+// Inicializar el array para la respuesta
+$response = [];
 
-        // Obtener datos específicos del odontograma
+// Verificar si se proporcionaron los datos de odontograma y documentoPaciente
+if (isset($data['odontograma']) && isset($data['documentoPaciente'])) {
+    try {
+        // Obtener los datos de odontograma y documentoPaciente
+        $odontograma = $data['odontograma'];
+        $documentoPaciente = $data['documentoPaciente'];
+
+        // Iterar sobre los elementos del odontograma
         foreach ($odontograma as $item) {
-            // Verificar si es la hora y minutos
-            if (isset($item['horaYMinutos'])) {
-                $horaYMinutos_odontograma = $item['horaYMinutos'];
-                // Puedes hacer lo que necesites con la hora y los minutos
-                echo "Hora del odontograma: $horaYMinutos_odontograma";
-            } else {
-                // Si no es la hora, son los otros datos (nombreDiente y comentario)
-                $id_diente = $item['nombreDiente'];
+            // Verificar si el elemento tiene el campo 'comentario'
+            if (isset($item['comentario'])) {
+                // Obtener el comentario
                 $comentario = $item['comentario'];
 
-                // Combina el id_diente y el comentario en una sola variable
-                $comentarios = "$id_diente - $comentario";
+                // Obtener la fecha si está presente, de lo contrario, usar la fecha actual
+                $fecha = isset($item['fecha']) ? $item['fecha'] : date('Y-m-d');
 
-                // Asegúrate de definir $Fecha_odontograma antes de usarla
-                $Fecha_odontograma = ''; // Puedes asignar un valor por defecto o obtenerla de alguna manera
-
+                // Aquí puedes agregar el código para guardar los datos en la base de datos
                 // Crear instancia de la claseHistorial y llamar al método odontograma
                 $odontogramaAdulto = new claseHistorial();
-                $odontogramaAdulto->odontograma($comentarios, $Fecha_odontograma);
+                $odontogramaAdulto->odontograma($documentoPaciente, $fecha, $comentario);
 
-                // Luego, si es necesario, puedes registrar el odontograma en tu modelo
+                // Si es necesario, registrar el odontograma en el modelo
                 $regOdontograma = new modeloHistorial();
-                $regOdontograma->regOdontogramaAdulto($comentarios, $Fecha_odontograma);
+                $regOdontograma->regOdontogramaAdulto($documentoPaciente, $fecha, $comentario);
+            } else {
+                // Si falta el campo 'comentario', no hacer nada
             }
         }
 
-        echo json_encode(['success' => true, 'message' => 'Odontograma(s) guardado(s) con éxito']);
+        // Establecer la respuesta de éxito
+        $response['success'] = true;
+        $response['message'] = 'Odontograma(s) guardado(s) con éxito';
     } catch (Exception $exc) {
-        // Enviar una respuesta JSON de error
-        echo json_encode(['success' => false, 'message' => 'Error al procesar el odontograma']);
+        // Establecer la respuesta de error
+        $response['success'] = false;
+        $response['message'] = $exc->getMessage();
     }
 } else {
-    // Enviar una respuesta JSON de error si no se proporciona el odontograma
-    echo json_encode(['success' => false, 'message' => 'Llenar todos los campos']);
+    // Establecer la respuesta de error si no se proporcionan los datos necesarios
+    $response['success'] = false;
+    $response['message'] = 'Llenar todos los campos';
 }
+
+// Convertir la respuesta a JSON y enviarla
+echo json_encode($response);
 ?>

@@ -1,5 +1,5 @@
 <?php
-include '../controladores/ConexionDB.php';
+include '../controladores/conexionDB.php';
 class modeloRegistro{
         public function regPersona(persona $regPersona) {
    try {

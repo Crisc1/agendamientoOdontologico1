@@ -73,24 +73,44 @@
             background-color: #0056b3;
         }
         
+        .btn-volver {
+            background-color: #e63946; /* Cambio de color a un tono de rojo más fuerte */
+            color: #fff;
+            border-color: #e63946; /* Cambio de color del borde */
+            border-radius: 10px;
+            padding: 8px 16px;
+            margin-left: 10px;
+        }
+        
+        .btn-volver:hover {
+            background-color: #cf303e; /* Cambio de color al pasar el ratón */
+            border-color: #cf303e; /* Cambio de color del borde al pasar el ratón */
+        }
+        
         /* Estilos personalizados para los modales */
-.modal-content {
-    background-color: #f8f9fa; /* Color de fondo del contenido del modal */
-    color: #343a40; /* Color del texto en el modal */
-}
-
-.modal-header {
-    background-color: #007bff; /* Color de fondo del encabezado del modal */
-    color: #fff; /* Color del texto en el encabezado del modal */
-}
-
-.modal-footer {
-    background-color: #f8f9fa; /* Color de fondo del pie del modal */
-}
+        .modal-content {
+            background-color: #f8f9fa; /* Color de fondo del contenido del modal */
+            color: #343a40; /* Color del texto en el modal */
+        }
+        
+        .modal-header {
+            background-color: #007bff; /* Color de fondo del encabezado del modal */
+            color: #fff; /* Color del texto en el encabezado del modal */
+        }
+        
+        .modal-footer {
+            background-color: #f8f9fa; /* Color de fondo del pie del modal */
+        }
 
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="../administrador/menuAdministrador.php">Centro Odontológico</a>
+        <div class="navbar-collapse justify-content-end">
+            <button class="btn rounded mr-2 btn-volver" type="button" onclick="window.history.back()">Volver</button>
+        </div>
+    </nav>
     <form action="../../controladores/controlPersona.php" method="post">
         <h1>REGISTRO</h1>
         <label for="nombre">Nombre:</label>

@@ -2,7 +2,7 @@
 session_start(); // Iniciar la sesión
 
 // Incluir el archivo de conexión a la base de datos
-include '../../controladores/ConexionDB.php';
+include '../../controladores/conexionDB.php';
 
 // Crear una instancia de la clase de conexión a la base de datos
 $conexion = new ConexionDB();
@@ -34,11 +34,11 @@ $sql = "SELECT
                 P.CONTRASENA,
                 R.NOMBRE_ROL AS ROL
             FROM 
-                PERSONA P
+                persona P
             JOIN 
-                TIPO_DOCUMENTO TD ON P.TIPO_DOCUMENTO = TD.ID_DOCUMENTO
+                tipo_documento TD ON P.TIPO_DOCUMENTO = TD.ID_DOCUMENTO
             LEFT JOIN 
-                ROL R ON P.ID_ROL = R.ID_ROL
+                rol R ON P.ID_ROL = R.ID_ROL
             WHERE 
                 P.ID_ROL != 1 AND
                 CONCAT(P.NOMBRE, ' ', P.APELLIDO) != '$nombre $apellido'
